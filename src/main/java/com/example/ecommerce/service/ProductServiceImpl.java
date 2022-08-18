@@ -14,22 +14,20 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl  {
     private final ProductRepository productRepository;
 
 
-    @Override
+
     public List<Product> findAllProducts(String title) {
         if (title != null) return productRepository.findByTitle(title);
         return productRepository.findAll();
     }
 
-    @Override
     public Product findProduct(Long id) {
         return productRepository.findById(id).orElse(null);
     }
 
-    @Override
     public void addProduct(Product product, MultipartFile file1, MultipartFile file2, MultipartFile file3) throws IOException {
         Image image1;
         Image image2;
@@ -64,13 +62,11 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
-    @Override
     public Product updateProduct(Product product) {
         return null;
     }
 
 
-    @Override
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }

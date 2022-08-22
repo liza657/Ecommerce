@@ -18,7 +18,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "email", unique = true)
+    @Column(name = "email", unique = true,updatable = false)
     private String email;
     @Column(name = "phone_number")
     private String phoneNumber;
@@ -26,6 +26,7 @@ public class User implements UserDetails {
     private String name;
     @Column(name = "active")
     private boolean active;
+    private String activationCode;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "image_id")
     private Image avatar;
@@ -39,6 +40,7 @@ public class User implements UserDetails {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     private List<Product> products = new ArrayList<>();
     private LocalDateTime dateOfCreated;
+
 
 
     @PrePersist

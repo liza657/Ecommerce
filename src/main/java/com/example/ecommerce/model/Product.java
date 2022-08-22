@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     @Column(name = "title")
@@ -37,9 +37,7 @@ public class Product {
     private LocalDateTime dateOfCreated;
 
     @PrePersist
-    private void init() {
-        dateOfCreated = LocalDateTime.now();
-    }
+    private void onCreate() { dateOfCreated = LocalDateTime.now(); }
 
     public void addImageToProduct(Image image) {
         image.setProduct(this);
